@@ -199,3 +199,29 @@ public class HomeController {
 }
 ```
 
+## 인증(Authentication)
+
+- Authentication : 인증을 하기 위한 정보와 인증을 받기위한 정보가 동시에 들어있다. xxxToken등의 이름으로 정보가 전달된다.
+  - Credentiails : 인증을 받기 위해 필요한 정보(input)
+  - Principal : 인증된 결과. 인증 대상(output)
+  - Details : 기타 정보, 인증에 관여된 주변 정보들
+  - Authorities : 권한 정보들
+
+- 흐름
+  - Authentication - credential로 인증 요청
+  - 인증제공자(Authentication Provider)에서 authenticate()를 실행 하여 인증
+  - Authentication - principal로 인증 응답
+
+### 인증 관리자(AuthenticationManager)
+
+- Authentcation Provider관리하는 인터페이스
+
+- Authentcation Manager를 구현한 객체가 Provider Manager이다.
+
+- Provider Manager
+
+  - 기본적으로 DaoAuthenticationProvider를 제공한다.
+  - UserDetailsService에서 loadUserByUserName()에 접근한다.
+  - UserDetails에 접근하여 DB등에서 유저정보를 가져온다.
+
+  - 실무에서는 **UserDetails를 구현하**여 loadUserByUserName에 등록하면 DaoAuthenticationProvider가 알아서 처리하도록 개발한다.
