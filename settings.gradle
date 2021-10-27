@@ -23,7 +23,7 @@ rootProject.name = 'spring_security'
         [
                 "src/main/java/com/walter/fastcampus",
                 "src/main/resources",
-                "src/test/java/walter/fastcampus",
+                "src/test/java/com/walter/fastcampus",
                 "src/test/resources"
         ].each {srcDir->
             def srcFolder = new File(subDir.absolutePath, srcDir)

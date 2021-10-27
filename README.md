@@ -225,3 +225,35 @@ public class HomeController {
   - UserDetails에 접근하여 DB등에서 유저정보를 가져온다.
 
   - 실무에서는 **UserDetails를 구현하**여 loadUserByUserName에 등록하면 DaoAuthenticationProvider가 알아서 처리하도록 개발한다.
+
+## BasicAuthenticationFilter
+
+- 기본적으로 로그인 페이지를 사용할 수 없는 상황에서 사용
+  - 서버에서 로그인 페이지를 만들어서 넘기는 형식이 아닌, 클라이언트 측에서 view를 만들어서 서버에 요청하는 경우(즉, 클라이언트와 서버가 협업하여 개발하는 경우)
+  - SPA 페이지 (react, angular, vue ...)
+  - 브라우저 기반의 모바일 앱(브라우저 기반의 앱 ex. inoic)
+
+- 설정 방법
+
+```java
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.httpBasic();
+  }
+}
+```
+
+- 흐름
+
+  - 클라이언트는 헤더에 Authorization: Basic xxxxxx 로 설정 후 요청
+  - BasicAuthenticationFilter가 Header를 확인 한 후 인증이 완료되면 SecurityContext에 객체를 넣고 진행
+  - 최초 로그인시에만 인증을 처리하고 이후에는 session에 의존한다.
+  - RememberMe를 설정한 경우 쿠키가 브라우저에 저장되기 때문에 Session이 만료되더라도 브라우저 기반의 앱에서는 이용이 가능하다.
+  - 단점
+    - http에서 header에 설정하는 것은 보안에 매우 취약하다. 따라서 https를 권장하고 있다.
+
+  - 보완
+    - JWT 토큰등으로 서명값이 있는 토큰을 이용한다.
+
+  
