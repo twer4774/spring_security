@@ -1,2 +1,10 @@
 server:
   port: 9052
+
+
+#web-student-teacher로 모듈 공유를 위해 설정 필요
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    check-template-location: true
