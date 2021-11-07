@@ -3,5 +3,6 @@ apply from: "../web-common.gradle"
 dependencies {
 
     implementation project(":web-user-admin")
+    implementation project(":comp-user-admin")
 }
 
