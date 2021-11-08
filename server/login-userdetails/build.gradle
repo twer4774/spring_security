@@ -2,6 +2,10 @@ apply from: "../web-common.gradle"
 
 dependencies {
 
+    implementation "$boot:spring-boot-starter-data-jpa"
+
+    runtimeOnly "com.h2database:h2"
+
     implementation project(":web-user-admin")
     implementation project(":comp-user-admin")
 }

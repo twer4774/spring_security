@@ -12,3 +12,20 @@ spring:
     prefix: classpath:/templates/
     cache: false
     check-template-location: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  datasource:
+#    url: jdbc:h2:mem:userdetails-test #inmemory
+    url: jdbc:h2:~/data/userdetails-test
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update #자동 테이블 생성 배포시 NONE으로 설정

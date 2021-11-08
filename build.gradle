@@ -43,6 +43,9 @@ subprojects {
 
 		compileOnly lombok
 		testCompileOnly lombok
+
+
+
 		annotationProcessor lombok
 		testAnnotationProcessor lombok
 
